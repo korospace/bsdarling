@@ -19,10 +19,13 @@
 
 <!-- JS -->
 <?= $this->section('contentJs'); ?>
-<script src="<?= base_url('assets/js/homepage.js'); ?>"></script>
+  <!-- burger -->
+  <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+  <!-- page -->
+  <script src="<?= base_url('assets/js/homepage.js'); ?>"></script>
 
-<script>
-</script>
+  <script>
+  </script>
 <?= $this->endSection(); ?>
 
 <!-- Body -->
@@ -33,10 +36,16 @@
 <!-- **** Alert info **** -->
 <?= $this->include('Components/alertInfo'); ?>
 
-<nav class="bg-white border-gray-200 ">
-  <div class="flex flex-wrap items-center justify-between max-w-screen-xl py-6 mx-auto">
-    <a href="#" class="flex items-center">
-      <img src="<?= base_url('assets/images/banksampah-logo.webp'); ?>" class="h-8 mr-3" alt="Banksampah Logo" />
+<nav class="fixed top-0 left-0 w-full z-50 bg-white border-gray-200 shadow-sm">
+  <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-6 mx-auto">
+    <a href="#" class="flex items-center gap-2">
+      <img src="<?= base_url('assets/images/banksampah-logo.webp'); ?>" 
+          class="h-8" alt="Banksampah Logo" />
+
+      <!-- Text hanya muncul di md ke atas -->
+      <span class="inline md:hidden text-lg font-light text-gray-800">
+        Bank Sampah Darling
+      </span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-default" aria-expanded="false">
       <span class="sr-only">Open main menu</span>
@@ -70,7 +79,7 @@
   </div>
 </nav>
 
-<div class="mx-8 space-y-32 sm:mx-12">
+<div class="mx-8 space-y-32 sm:mx-12 pt-24">
   <section id="beranda" class="grid w-full grid-cols-1 gap-4 px-8 mt-8 sm:grid-cols-2">
     <div class="flex flex-col w-full gap-4 place-content-center">
       <p class="text-5xl font-light">
@@ -191,7 +200,7 @@
       </div>
       <div class="flex p-4 place-content-center place-items-center">
         <div class="flex w-full place-content-center">
-          <img src="<?= base_url("assets/images/bg-r3.jpg") ?>" alt="">
+          <img src="<?= base_url("assets/images/bg-r1.jpg") ?>" alt="">
         </div>
       </div>
     </div>
@@ -271,7 +280,7 @@
     </div>
   </section>
 
-  <section id="newsletter" class="space-y-8">
+  <!-- <section id="newsletter" class="space-y-8">
     <p class="px-4 text-4xl font-bold text-center capitalize">newsletter</p>
     <p class="px-4 text-lg text-center text-gray-700">
       Masukkan email untuk mendapatkan kabar terbaru
@@ -280,11 +289,11 @@
       <input id="email" type="email" class="w-1/2 p-4 text-gray-600 border-2 border-green-400 rounded-md shadow-md outline-none focus:border-green-600 focus:shadow-xl">
       <button id="newsbtn" class="px-8 py-2 text-white capitalize bg-green-500 rounded-lg shadow-md hover:bg-green-600 hover:shadow-xl">subscribe</button>
     </div>
-  </section>
+  </section> -->
 
   <section id="footer">
 
-    <footer class="bg-white">
+    <footer class="bg-white border-t border-gray-10">
       <div class="w-full max-w-screen-2xl p-4 py-6 mx-auto lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">

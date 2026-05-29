@@ -47,6 +47,22 @@ docker-compose down
 docker-compose up --build
 ```
 
+## How to setup tailwind
+### turn into tailwind folder
+```php
+cd public/assets/tailwind
+```
+
+### install node-modules
+```php
+npm install
+```
+
+### generate tailwind css file
+```php
+npm run build-tailwind-homepage
+```
+
 ## Other Command Cheatseet
 ### turn into bash
 ```php
