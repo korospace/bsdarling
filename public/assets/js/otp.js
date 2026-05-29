@@ -91,7 +91,13 @@ function sendOtp(otp) {
 				})
 				.then((response) => {
 					hideLoadingSpinner();
-					document.cookie = `token=${response.data.token}; path=/;SameSite=None; Secure`;
+
+					let isLocal = location.protocol === 'http:';
+					let cookieOptions = isLocal
+						? 'path=/'                       
+						: 'path=/;SameSite=None;Secure';
+
+					document.cookie = `token=${response.data.token}; ${cookieOptions}`;
 					window.location.replace(`${BASEURL}/nasabah`);
 				})
 				.catch(() => {

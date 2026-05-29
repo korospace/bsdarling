@@ -26,7 +26,12 @@ $('#formLoginNasabah').on('submit', function(e) {
             var expireTime = time + 1000*(3600*24);
             now.setTime(expireTime);
 
-            document.cookie = `token=${response.data.token}; expires=${now.toUTCString()}; path=/; SameSite=None; Secure`;
+            let isLocal = location.protocol === 'http:';
+            let cookieOptions = isLocal
+                ? 'path=/'                       
+                : 'path=/;SameSite=None;Secure';
+
+            document.cookie = `token=${response.data.token}; expires=${now.toUTCString()}; ${cookieOptions}`;
             window.location.replace(`${BASEURL}/nasabah`);
         })
         .catch((error) => {
@@ -189,7 +194,12 @@ $('#formLoginAdmin').on('submit', function(e) {
             var expireTime = time + 1000*(3600*24);
             now.setTime(expireTime);
 
-            document.cookie = `token=${response.data.token}; expires=${now.toUTCString()}; path=/; SameSite=None; Secure`;
+            let isLocal = location.protocol === 'http:';
+            let cookieOptions = isLocal
+                ? 'path=/'                       
+                : 'path=/;SameSite=None;Secure';
+
+            document.cookie = `token=${response.data.token}; expires=${now.toUTCString()}; ${cookieOptions}`;
             window.location.replace(url);
         })
         .catch((error) => {

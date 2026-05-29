@@ -3,9 +3,14 @@ let pageTitle1  = docTitle[0].replace(/\s/,'');
 let pageTitle2  = docTitle[1].replace(/\s/,'');
 let dataAdmin   = '';
 
+let isLocal = location.protocol === 'http:';
+let cookieOptions = isLocal
+    ? 'path=/'                       
+    : 'path=/;SameSite=None;Secure';
+
 if (pageTitle1 == 'Admin') {
     let webUrl      = window.location.href;
-    document.cookie = `lasturl=${webUrl}; path=/;SameSite=None; Secure`;
+    document.cookie = `lasturl=${webUrl}; ${cookieOptions}`;
 }
 
 /**
@@ -36,12 +41,12 @@ const httpRequestGet = (url) => {
                         showCancelButton: false,
                         confirmButtonText: 'ok',
                     }).then(() => {
-                        document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                        document.cookie = `token=null;expires=; ${cookieOptions}`;
                         window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                     })
                 }
                 else{
-                    document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                    document.cookie = `token=null;expires=; ${cookieOptions}`;
                     window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                 }
             }
@@ -110,12 +115,12 @@ const httpRequestPost = (url,form) => {
                         showCancelButton: false,
                         confirmButtonText: 'ok',
                     }).then(() => {
-                        document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                        document.cookie = `token=null;expires=; ${cookieOptions}`;
                         window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                     })
                 }
                 else{
-                    document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                    document.cookie = `token=null;expires=; ${cookieOptions}`;
                     window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                 }
             }
@@ -180,12 +185,12 @@ const httpRequestPut = (url,form) => {
                         showCancelButton: false,
                         confirmButtonText: 'ok',
                     }).then(() => {
-                        document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                        document.cookie = `token=null;expires=; ${cookieOptions}`;
                         window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                     })
                 }
                 else{
-                    document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                    document.cookie = `token=null;expires=; ${cookieOptions}`;
                     window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                 }
             }
@@ -231,12 +236,12 @@ const httpRequestDelete = (url) => {
                         showCancelButton: false,
                         confirmButtonText: 'ok',
                     }).then(() => {
-                        document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                        document.cookie = `token=null;expires=; ${cookieOptions}`;
                         window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                     })
                 }
                 else{
-                    document.cookie = `token=null;expires=;path=/;SameSite=None; Secure`;
+                    document.cookie = `token=null;expires=; ${cookieOptions}`;
                     window.location.replace((pageTitle1 == 'Nasabah') ? `${BASEURL}/login` : `${BASEURL}/login/admin`);
                 }
             }
@@ -283,8 +288,8 @@ $('#btn-logout').on('click', function(e) {
             .then(() => {
                 Swal.close();
 
-                document.cookie = `token=null; path=/;SameSite=None; Secure`;
-                document.cookie = `lasturl=null; path=/;SameSite=None; Secure`;
+                document.cookie = `token=null; ${cookieOptions}`;
+                document.cookie = `lasturl=null; ${cookieOptions}`;
                 window.location.replace(loginUrl);
                 // setTimeout(() => {
                 //     console.log(loginUrl);
@@ -296,8 +301,8 @@ $('#btn-logout').on('click', function(e) {
                 if (error.response.status == 401) {
                     Swal.close();
 
-                    document.cookie = `token=null; path=/;SameSite=None; Secure`;
-                    document.cookie = `lasturl=null; path=/;SameSite=None; Secure`;
+                    document.cookie = `token=null; ${cookieOptions}`;
+                    document.cookie = `lasturl=null; ${cookieOptions}`;
                     window.location.replace(loginUrl);
                 }
                 // error server
