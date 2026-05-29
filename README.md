@@ -6,25 +6,49 @@
 
 ## Requirements
 
-- php 7.3 or higher
-- [composer 2.3.4](https://getcomposer.org/)
-- mysql
+- docker
+- docker-compose
+- Setup mysql container
+- Setup phpmyadmin container
+- Create database with name `db_bsdarling`
 
-## Setup
+## Import database
+open phpmyadmin and import `db_bsdarling.sql` into database `db_bsdarling`
 
-<ol>
-    <li> Clone <b>or</b> Download as ZIP
-    <li> Change Directory to root project </li>
-    <li> Create database <b>db_bst</b> </li>
-    <li> run:</li>
-</ol>
+## How to run container
+### edit `.env`
+```php
+// ...
 
+database.default.hostname = mysql_korospace # mysql container name
+database.default.database = db_bsdarling
+database.default.username = korospace
+database.default.password = korospace
+database.default.DBDriver = MySQLi
+database.default.DBPrefix = 
+
+// ...
 ```
-composer install
 
-php spark migrate
+### how to run
+```php
+docker-compose up -d
+```
 
-php spark db:seed AppSeed
+### how to stop
+```php
+// stop service
+docker-compose stop
 
-php spark serve -port 8888
+// stop service and remove container
+docker-compose down
+
+// rebuild
+docker-compose up --build
+```
+
+## Other Command Cheatseet
+### turn into bash
+```php
+docker-compose exec -i -t ci4-bsdarlingweb-container bash
 ```
