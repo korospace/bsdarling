@@ -1,0 +1,21 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "tailwind for banksampahpedia website",
+  "main": "postcss.config.js",
+  "scripts": {
+    "build-tailwind-homepage": "postcss src/homepage.css -o dist/homepage.css"
+  },
+  "keywords": [
+    "tailwind"
+  ],
+  "author": "elkorospace",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^2.2.4"
+  }
+}

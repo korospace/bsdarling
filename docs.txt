@@ -1,0 +1,91 @@
+terapkan di bsbl
+- hilangkan search nasabah saat form jualsampah aktif
+
+must be install
+- sudo apt-get install php-intl
+
+extension must uncomment
+- pgsql.so ->> /opt/lampp/etc/php.ini
+- intl     ->> /etc/php/php.ini
+
+deploy
+- enable .env in .gitignore
+
+1. change environment
+
+    1- go to .env
+    2- go to line 18
+    3- change 'CI_ENVIRONMENT = production' 
+       to     'CI_ENVIRONMENT = development' 
+
+2. setup database
+
+    1- go to .env
+    2- go to line 41
+    3- go to app/Config/Database.php
+    4- go to line 33
+
+3- create table nasabah
+
+    1- php spark migrate:create nasabah
+    2- go to app/Database/Migrations
+    3- edit the file
+    4- php spark migrate
+
+4- create controller nasabah
+
+    1- php spark make:controller Nasabah
+
+5- create model nasabah
+
+    1- php spark make:model Nasabah
+
+6- install jwt
+
+    1- composer require firebase/php-jwt
+
+7- edit routes
+
+    1- go to app/Config/Routes.php
+    2- go to line 35
+
+8- make seed
+
+    1- php spark make:seeder AdminSeed
+    2- php spark db:seed AdminSeed
+
+
+===============================================================================================
+
+1- file admin.transaksi.js
+    - line 324 elInputHarga.value = parseFloat(parseFloat(jumlahKg)*parseInt(harga)).toFixed(2);
+    - line 1055-1086
+
+2- database table setor_sampah jumlah_rp jadi decimal(11,2)
+
+3- database table dompet uang jadi decimal(11,2)
+
+4- controller transaksi.php
+    - line 93 Rp ".number_format($key['jumlah_rp'] , 2, '.', ',')."
+    - line 122 Rp ".number_format($totalRp , 2, '.', ',')."
+    - line 389 $totUangSetor = $totUangSetor+(float)$key['jumlah_rp'];
+    - line 419 Rp ".number_format($key['jumlah_rp'] , 2, '.', ',')."
+    - line 432 Rp ".number_format($totalRp , 2, '.', ',')."
+    - line 446-496
+
+5- database table jual_sampah
+    - harga_nasabah jadi decimal(11,2)
+    - jumlah_rp jadi decimal(11,2)
+
+6- hilangkan Rp di list cetak detil transaksi dan ubah ke text-right
+7- gunakan modal-lg saat pejualan sampah line 986 dan 990
+8- sorting jenis sampah line 265 admin.transaksi.js
+
+
+- git clone dalam htdocs xampp 7.5
+- buat database dengan nama db_bsdarling
+- import file db_bsdarling.sql yang ada di root folder
+- composer install
+- php artisan serve
+
+*jangan ubah nama folder root, biarkan sama seperti nama repo github*
